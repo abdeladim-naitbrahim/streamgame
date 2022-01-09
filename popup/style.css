@@ -1,0 +1,35 @@
+*
+{
+	margin: auto;
+	display: block;
+}
+.myblock
+{
+	margin: 20px;
+	padding: 20px;
+	border: black;
+	border-style: solid;
+	box-shadow: rgb(122, 122, 122);
+}
+input {
+  font-size: 20px;
+  height:50px;
+}
+.imagediv {
+    margin-top:50px;
+}
+.imagediv .showonhover {
+	background:rgb(0, 132, 255);
+	padding:20px;
+	opacity:0.9;
+	color:white;
+	width: 90%;
+	display:block;	
+	text-align:center;
+	cursor:pointer;
+}
+img
+{
+	width: 25%;
+	height: auto;
+}

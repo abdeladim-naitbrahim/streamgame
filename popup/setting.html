@@ -1,0 +1,39 @@
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="jquery-1.8.3.min.js"></script>  
+</head>
+
+<body>
+  
+  <div class="myblock">
+    <h3>chose background image</h3><p><br></p>
+    <img id="image1" src="http://macgroup.org/blog/wp-content/uploads/2011/10/iphone-camera-icon-150x150.jpg" id="upfile1" style="cursor:pointer" />
+    <p></p>
+    <input type="file" id="file1" name="image" accept="image/*" capture style="display:none" >
+    <div align="left" class="imagediv">
+        <span class="visibleimg"></span>
+        <span id="bt1" class="showonhover">Choose Files</span>
+        <input id="selectfile" type="file" name="" style="display: none;" />
+    </div>
+    </input>
+  </div>
+
+  <br>
+
+
+  <div class="myblock">
+    <h3>chose enemy image</h3><p><br></p>
+    <input type="file" id="file2" name="image" accept="image/*" capture style="display:none"/>
+    <img id="image2" src="http://macgroup.org/blog/wp-content/uploads/2011/10/iphone-camera-icon-150x150.jpg" id="upfile2" style="cursor:pointer" />
+    <p></p>
+  
+    <div align="left" class="imagediv">
+        <span class="visibleimg"></span>
+        <span id="bt2" class="showonhover">Choose Files</span>
+        <input id="selectfile1" type="file" name="" style="display: none;" />
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>

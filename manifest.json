@@ -1,0 +1,38 @@
+{
+
+  "manifest_version": 2,
+  "name": "TikTokStreamer",
+  "version": "1.0",
+  
+  "permissions": ["tabs", "storage", "webRequest", "<all_urls>"],
+
+  "description": "Ajoute une bordure rouge pleine sur l'ensemble des pages web mozilla.org.",
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.tiktok.com/*"],
+      "css": ["resource/css/w3.css","resource/css/style.css","resource/css/styleend.css","resource/css/googleapi.css"],
+      "js": ["lib/jquery-1.8.3.min.js","lib/babel.min.js","lib/react.development.js","lib/react-dom.development.js",
+        "ReactUi.js","Game.js","Comments.js","main.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    "resource/image/creeper.png",
+    "resource/image/instruction.png",
+    "resource/leaderboard.html"
+  ],
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "icons/border-48.png",
+    "default_title": "TikTok Stream",
+    "default_popup": "popup/index.html"
+  },
+  "background": {
+    "scripts": ["background/background.js"]
+  }
+
+}
+
