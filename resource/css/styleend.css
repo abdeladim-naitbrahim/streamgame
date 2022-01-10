@@ -1,17 +1,24 @@
 
 
-* {
+.gameOver:nth-child(n+1)  {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-div
+.gameOver  div
 {
   height: 100%;
 }
-body,
-html {
+.gameOver  body {
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  background: #f9f9f9;
+  font-family: "Montserrat", sans-serif;
+}
+ .gameOver   html{
   min-width: 100%;
   min-height: 100%;
   width: 100%;
@@ -54,6 +61,7 @@ html {
   background: #fff;
   padding: 10px;
   height: 75%;
+  margin: auto;
 }
 .wrapper .wrapper__content ul {
   list-style: none;

@@ -1,4 +1,4 @@
-let duration=15
+let duration=600
 class CanvasReact extends React.Component {
   constructor(props) {
     super(props);
@@ -92,8 +92,8 @@ class CanvasReact extends React.Component {
     let points=[];
     let images=[];
     props.listscore.forEach(x => {
-      //console.log(x.name)
-      //console.log(x.point)
+      console.log(x.name)
+      console.log(x.point)
       console.log(x.image)
       names.push(x.name);
       points.push(x.point);

@@ -16,8 +16,8 @@ class Point
     }
     addpoint(comment)
     {        
-        console.log(comment.image);
-        this.points[comment.name]={point:(this.points[comment.name]||0)+attackPoint[comment.type],image:comment.image};    
+       // console.log(comment.image);
+        this.points[comment.name]={point:(this.points[comment.name]?.point||0)+attackPoint[comment.type],image:comment.image};    
         this.finalpoints=Object.keys(this.points).map(x=>({image:this.points[x].image,name:x,point:this.points[x].point})).sort((a,b)=>(-a.point+b.point)).slice(0, 5);
         //this.finalpoints=this.finalpoints.fill({name:"_",point:'_',image:""},this.finalpoints.length,5)
         while(this.finalpoints.length<5)
@@ -37,7 +37,7 @@ function attack(x)
 }
 function addcomment(x,video_space1)
 {
-    video_space1.innerHTML+="<div>"+'<div class="profileimage">'+x.image+"</div>"+"<div>"+x.name+"</div>"+"<div>"+x.comment+"</div>"+"</div>";   
+    video_space1.innerHTML+='<div class="oncomment">'+'<div class="profileimage"><img src="'+x.image+'"></img></div>'+"<div>"+x.name+"</div>"+"<div>"+x.type+"</div>"+"</div>";   
     setTimeout(() => {
         video_space1.childNodes[0].remove();
     },  500);
