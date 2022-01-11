@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["*://*.tiktok.com/*"],
-      "css": ["resource/css/w3.css","resource/css/style.css","resource/css/styleend.css","resource/css/googleapi.css"],
+      "css": ["resource/css/w3.css","resource/css/style.css","resource/css/styleend.css","resource/css/googleapi.css","resource/css/comment style.css"],
       "js": ["lib/jquery-1.8.3.min.js","lib/babel.min.js","lib/react.development.js","lib/react-dom.development.js",
         "ReactUi.js","Game.js","Comments.js","main.js"]
     }

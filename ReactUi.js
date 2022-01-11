@@ -2,41 +2,52 @@ let duration=600
 class CanvasReact extends React.Component {
   constructor(props) {
     super(props);
+    this.update=this.update.bind(this);
+    this.begining=this.begining.bind(this);
     this.begining(props);
   }
   begining(props)
   {    
-    this.state = {lose:false ,power: 100,attack:false };
+    this.state=( {lose:false ,power: 100,attack:false,comments:[] });
     console.log("contricture:",this.state.power);
     this.myTimeout=setTimeout(() => {},  500);
   }
     render() {
-      console.log(this.state.power)
+      //console.log(this.state.power)
+      //console.log(this.state.comments);
       if( this.state.lose)
         return React.createElement(FinalReact,{bestScore:points.bestScore,listscore:points.finalpoints});
       else
-        return React.createElement("div",{className:"myDiv"},React.createElement(CommentsReact,null),
+        return React.createElement("div",{className:"myDiv"},React.createElement(CommentsReact,{comments:this.state.comments}),
       React.createElement("div",{className:"game"},     React.createElement(CreeperReact,{attack:this.state.attack}), React.createElement("div",{className:"bar"},React.createElement(BarReact,{power:this.state.power})), React.createElement("img",{className:"instruction",src:instructionimage}))
       );
     }
-    update(damage)
+    update(x)
     {
+      let damage;
+      damage=(x==0?0:attackPoint[x.type]);
       gloabalpower=this.state.power;
       if(this.state.power<=0)
       {  
-        this.setState({lose:true , power: 0,attack:true});
+        this.setState({lose:true , power: 0,attack:true,comments:[]});
         console.log("finish");
       }
       else
       {
         clearTimeout(this.myTimeout)
-        this.setState({lose:false , power: this.state.power>=damage? (this.state.power-damage):0,attack:true});
-        this.setState({lose: this.state.power<=0 , power: this.state.power,attack:true});
+        this.setState({lose:false , power: this.state.power>=damage? (this.state.power-damage):0,attack:true,comments:(x==0?(this.state.comments):([...this.state.comments,x]))});
+        this.setState({lose: this.state.power<=0 , power: this.state.power,attack:true,comments:this.state.comments});
         this.myTimeout=setTimeout(() => {
-          this.setState({lose:this.state.lose , power: this.state.power,attack:false}
+          this.setState({lose:this.state.lose , power: this.state.power,attack:false,comments:this.state.comments}
+          //this.setState({lose:this.state.lose , power: this.state.power,attack:false,comments:this.state.comments?.slice(0,this.state.comments.length-1)}
             );
             gloabalpower=this.state.power;
       },  1000);
+      setTimeout(() => {       
+        this.setState({lose:this.state.lose , power: this.state.power,attack:this.state.attack,comments:this.state.comments?.slice(1)}
+          );
+          gloabalpower=this.state.power;
+    },  2000);
       }
       
     }
@@ -52,8 +63,22 @@ class CanvasReact extends React.Component {
   }
   
   class CommentsReact extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state={comments:this.props.comments};
+      console.log(this.state.comments);
+    }
+  /*addcomment(x)
+  {
+    //video_space1.innerHTML+='<div class="oncomment">'+'<div class="profileimage"><img src="'+x.image+'"></img></div>'+"<div>"+x.name+"</div>"+"<div>"+x.type+"</div>"+"</div>";   
+    setState({comments:[this.state.comments,x]})
+    setTimeout(() => {
+       setState({comments:this.state.comments?.slice(0,this.state.comments.length-1)})
+    },  2000);
+  }*/
     render() {
-      return React.createElement("div",{className:"comment"});
+      //console.log(this.props.comments[0]);
+      return React.createElement("div",{className:"comment"},this.props.comments.map(x=>React.createElement(OneComment,{comment:x})));
     }
   }
   class BarReact extends React.Component {
@@ -168,9 +193,18 @@ class CanvasReact extends React.Component {
   class OneComment extends React.Component {
     constructor(props) {
       super(props);
+     // console.log(this.props);
     }
     render() {
-      return React.createElement("div",{className:"myDiv"},React.createElement("div",{className:"gameOver"},React.createElement("h1",null,"Game finish")));
+     // console.log(this.props);
+      //return React.createElement("div",{className:""},this.props.comment?.name);
+       return React.createElement("div",{className:"comment0"},
+        React.createElement("section",{className:"notification animation"},
+            React.createElement("img",{src:this.props.comment?.image}),
+            React.createElement("h6",null,this.props.comment?.name),
+            React.createElement("div",{dangerouslySetInnerHTML:{__html:texttype[this.props.comment?.type||comment]}})
+        )
+    );
     }
   }
 

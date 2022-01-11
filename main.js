@@ -34,16 +34,23 @@ function startplay()
 }
 
 
-
+async function asyncplay() 
+{
+    console.log("asyncplay0")
+   comments=await get_comments();
+   console.log("asyncplay")
+   console.log(comments);
+    playgame(comment_space,game_space,comments);   
+}
   
  function playloop()
  {
     if(!playing && gloabalpower>0)
     {
-
+        console.log("playing");
+        asyncplay();
         //console.log(gloabalpower);
-        comments=get_comments();
-        playgame(comment_space,game_space,comments);
+        
     }
     setTimeout(() => {
         playloop();
