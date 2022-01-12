@@ -1,3 +1,4 @@
+let page = browser.extension.getBackgroundPage();
 $(document).ready(function(e) {
         $("#setting").click(function(){
           console.log('setting')
@@ -10,7 +11,6 @@ $(document).ready(function(e) {
 });
   });
 function start()
-{
-  let page = browser.extension.getBackgroundPage();
+{  
   page.start();
 }

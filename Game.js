@@ -1,5 +1,5 @@
 let gloabalpower=100;
-const attackPoint={comment:1,like:2,rose:2,subscribe:3,share:4}
+const attackPoint={comment:100,like:2,rose:2,subscribe:3,share:4}
 const texttype={comment:"comment",like:"Send Like",rose:'<span class="tiktok-1r7t292"><span>sent</span><span><img src="https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/eba3a9bb85c33e017f3648eaf88d7189~tplv-obj.png"></span><span>x1</span></span>'
 ,subscribe:"Send Follow",share:"Send Share"}
 class Point 
@@ -53,6 +53,7 @@ function newGame()
     reactElement.update(0);
     comment_space=canvas_space.childNodes[0];
     game_space=canvas_space.childNodes[1];
+    clearcomment();
     //comments=get_comments();
     comments=[];
     //canvas_space=get_canvas();

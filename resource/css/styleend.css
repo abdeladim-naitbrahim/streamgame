@@ -9,6 +9,7 @@
 .gameOver  div
 {
   height: 100%;
+  text-align: center;
 }
 .gameOver  body {
   min-width: 100%;
@@ -33,6 +34,10 @@
   margin: auto;
   height: 100%;
 }
+.name
+{
+
+}
 .wrapper .wrapper__header {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -56,6 +61,8 @@
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-size: 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .wrapper .wrapper__content {
   background: #fff;
@@ -94,30 +101,48 @@
   margin-bottom: 10px;
 }
 .wrapper .wrapper__content ul li .graphic {
-  width: 50px;
-  height: 50px;
+  width: 20%;
+  aspect-ratio: 1;
   border-radius: 50%;
   background: #ebeef3;
   overflow: hidden;
   padding: 5px;
+  height: 65%;
 }
 .wrapper .wrapper__content ul li .graphic img {
   width: 100%;
-  border-radius: 50%;
+  border-radius: 100%;
+  aspect-ratio: 1;
+  transform: translate(-50%,-50%);
+position: relative;
+top:50%;
+left: 50%;
 }
 .wrapper .wrapper__content ul li .name span {
   vertical-align: middle;
+  vertical-align: middle;
+top: 50%;
+transform: translate(0,-50%);
+position: relative;
 }
 .wrapper .wrapper__content ul li .name span.header {
   color: #979cb0;
   font-weight: 700;
   margin-right: 15px;
   vertical-align: middle;
+  display: inline-block;
+  width: 70%;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 .wrapper .wrapper__content ul li .name span.stat {
   color: #35d8ac;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 20px;
+  display: inline-block;
+  width: 20%;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 .wrapper .wrapper__content ul li .name span.sub {
   color: #35d8ac;

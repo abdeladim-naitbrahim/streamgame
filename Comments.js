@@ -33,7 +33,12 @@ function get_normal_comments()
     return Array.prototype.slice.call(x).map(x=>{return {comment:x,type:"comment"}});
 }
 
-
+function clearcomment()
+{
+    [...get_normal_comments(),...get_rose_comments(),...get_like_comments(),...get_subscribe_comments(),...get_share_comments()].filter(x=>x.comment.id=="").forEach(x=>{
+        //console.log(x.comment);
+        x.comment.id="Bnight"});
+}
 
 
 
@@ -42,7 +47,7 @@ const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 function get_html_comments()
 {
-    return [...get_rose_comments(),...get_like_comments(),...get_subscribe_comments(),...get_share_comments()].filter(x=>x.comment.id=="").slice(0,3); //[...get_normal_comments(),...get_rose_comments(),...get_like_comments(),...get_share_comments(),...get_subscribe_comments()];
+    return [...get_normal_comments(),...get_rose_comments(),...get_like_comments(),...get_subscribe_comments(),...get_share_comments()].filter(x=>x.comment.id=="").slice(0,3); //[...get_normal_comments(),...get_rose_comments(),...get_like_comments(),...get_share_comments(),...get_subscribe_comments()];
 }
 async function get_data_from_html(x0)
 {
@@ -69,7 +74,7 @@ async function get_data_from_html(x0)
         //console.log("close: ",name);
         await sleep(100);
     }
-    console.log(image);
+    //console.log(image);
     let y={name,image,comment,type:x0.type};
     
     return y;
@@ -96,14 +101,14 @@ async function get_filtered_comments_data()
 {
    // console.log("get comment");
     let x=await get_all_comments_data();
-    console.log("get_filtred_comments_data")
+   // console.log("get_filtred_comments_data")
     return x;
 }
 async function get_comments()
 {
     comments=[];
     let x=await get_filtered_comments_data();
-    console.log("get_comment")
+    //console.log("get_comment")
     //comments=x    
     return x/*.map((x0)=>{
         points.addpoint(x0);

@@ -1,4 +1,5 @@
-let duration=600
+let duration=20
+let stop=false;
 class CanvasReact extends React.Component {
   constructor(props) {
     super(props);
@@ -13,14 +14,20 @@ class CanvasReact extends React.Component {
     this.myTimeout=setTimeout(() => {},  500);
   }
     render() {
+      let stl=(image_background==""?{}:{"background-image": 'url("'+image_background+'")'})
       //console.log(this.state.power)
       //console.log(this.state.comments);
+      if(!this.state.lose)
+      stop=false;
       if( this.state.lose)
-        return React.createElement(FinalReact,{bestScore:points.bestScore,listscore:points.finalpoints});
+        {
+          clearcomment();
+          return React.createElement(FinalReact,{bestScore:points.bestScore,listscore:points.finalpoints});}
       else
-        return React.createElement("div",{className:"myDiv"},React.createElement(CommentsReact,{comments:this.state.comments}),
+        {
+          return React.createElement("div",{className:"myDiv",style:stl},React.createElement(CommentsReact,{comments:this.state.comments}),
       React.createElement("div",{className:"game"},     React.createElement(CreeperReact,{attack:this.state.attack}), React.createElement("div",{className:"bar"},React.createElement(BarReact,{power:this.state.power})), React.createElement("img",{className:"instruction",src:instructionimage}))
-      );
+      );}
     }
     update(x)
     {
@@ -101,7 +108,7 @@ class CanvasReact extends React.Component {
       super(props);
     }
     render() {
-      return React.createElement("img",{className:"creeper"+(this.props.attack?" creeperanimated":""),src:creeperimage});
+      return React.createElement("img",{className:"creeper"+(this.props.attack?" creeperanimated":""),src:enemmys[currentenemy]});
     }
   }
 
@@ -113,13 +120,13 @@ class CanvasReact extends React.Component {
     let pointreg=/@@(\d)/g
     let imagereg=/@@@(\d)/g
 
-    let names=[];
-    let points=[];
-    let images=[];
+    let names  = [];
+    let points = [];
+    let images = [];
     props.listscore.forEach(x => {
-      console.log(x.name)
-      console.log(x.point)
-      console.log(x.image)
+      //console.log(x.name)
+      //console.log(x.point)
+      //console.log(x.image)
       names.push(x.name);
       points.push(x.point);
       images.push(x.image);
@@ -163,10 +170,17 @@ class CanvasReact extends React.Component {
       this.time=duration+this.state.firsttime-Math.floor(Date.now() / 1000);
       //console.log(this.props.listscore[0].name);  
       if(this.time<=1)
-      {
-        this.myTimeout=setTimeout(() => {
+      {        
+        if(!stop)
+        {this.myTimeout=setTimeout(() => {
+          
+          console.log("newgame")
+          currentenemy++;
+          currentenemy=currentenemy%enemycount;
+          console.log(currentenemy)
           newGame();
       },  100);
+      stop=true;}
       }
       else
       {
