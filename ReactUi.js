@@ -26,12 +26,15 @@ class CanvasReact extends React.Component {
       else
         {
           return React.createElement("div",{className:"myDiv",style:stl},React.createElement(CommentsReact,{comments:this.state.comments}),
-      React.createElement("div",{className:"game"},     React.createElement(CreeperReact,{attack:this.state.attack}), React.createElement("div",{className:"bar"},React.createElement(BarReact,{power:this.state.power})), React.createElement("img",{className:"instruction",src:instructionimage}))
+      React.createElement("div",{className:"game"},     React.createElement(CreeperReact,{attack:this.state.attack}), React.createElement("div",{className:"bar"},React.createElement(BarReact,{power:this.state.power})), React.createElement("div",{className:"instruction"}))
       );}
     }
     update(x)
     {
       let damage;
+      if(x.type=="donation")
+      damage=getdonationdamage(x.comment)
+      else
       damage=(x==0?0:attackPoint[x.type]);
       gloabalpower=this.state.power;
       if(this.state.power<=0)
@@ -73,7 +76,7 @@ class CanvasReact extends React.Component {
     constructor(props) {
       super(props);
       this.state={comments:this.props.comments};
-      console.log(this.state.comments);
+     // console.log(this.state.comments);
     }
   /*addcomment(x)
   {
@@ -136,7 +139,7 @@ class CanvasReact extends React.Component {
     let htmlboard0=htmlboard.replace("@@@@",(totime(props.time)));
      htmlboard0=htmlboard0.replace(imagereg,(x,y)=>{return images[parseInt(y)-1]})//(x,y)=>{return ""})
     count=0;
-    htmlboard0=htmlboard0.replace(pointreg,(x,y)=>{return points[parseInt(y)-1]})//(x)=>{return ""})
+    htmlboard0=htmlboard0.replace(pointreg,(x,y)=>{return coefitionpower*points[parseInt(y)-1]})//(x)=>{return ""})
     count=0;
     htmlboard0=htmlboard0.replace(namereg,(x,y)=>{return names[parseInt(y)-1]})//(x)=>{return ""})
     
@@ -216,7 +219,9 @@ class CanvasReact extends React.Component {
         React.createElement("section",{className:"notification animation"},
             React.createElement("img",{src:this.props.comment?.image}),
             React.createElement("h6",null,this.props.comment?.name),
-            React.createElement("div",{dangerouslySetInnerHTML:{__html:texttype[this.props.comment?.type||comment]}})
+            
+            //React.createElement("div",{dangerouslySetInnerHTML:{__html:texttype[this.props.comment?.type||comment]}})
+            React.createElement("div",{dangerouslySetInnerHTML:{__html:(this.props.comment?.type=="donation"?setdonationtext(this.props.comment.comment):(texttype[this.props.comment?.type||comment]))}})
         )
     );
     }

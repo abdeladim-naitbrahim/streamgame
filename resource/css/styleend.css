@@ -141,7 +141,6 @@ text-overflow: ellipsis;
   font-size: 20px;
   display: inline-block;
   width: 20%;
-overflow: hidden;
 text-overflow: ellipsis;
 }
 .wrapper .wrapper__content ul li .name span.sub {

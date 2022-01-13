@@ -1,7 +1,42 @@
 "use strict";
 console.log('back background');
+const dotationpoint=
+{ Mirror:10,
 
-let setting={background:"",enemmys:[],time:20}
+  Football:10,
+  
+  Hi:10,
+  
+  "Hand Wave":10,
+  
+  GG:10,
+  
+  Gamepad:10,
+  
+  "Mini Speaker":10,
+  
+  Doughnut:10,
+  
+  TikTok:10,
+  
+  "Ice Cream Cone":10,
+  
+  Weights:10,
+  
+  Rose:10,
+  
+  "Magic Letter":10,
+  
+  "Finger Heart":10,
+  
+  Lollipop:10,
+  
+  Mic:10,
+  
+  Perfume:10}
+  const attackPoint={like:2,subscribe:3,share:4}
+
+let setting={background:"",enemmys:[],time:20,dotationpoint,attackPoint,coefitionpower:1}
 
 
 
@@ -19,6 +54,18 @@ function addenemmy(file,i)
 function settime(t) 
 {
   setting.time=t;
+}
+function setpointattack(key,point) 
+{
+  setting.attackPoint[key]=point;
+}
+function setdotationpoint(key,point) 
+{
+  setting.dotationpoint[key]=point;
+}
+function setcoefitionpower(point) 
+{
+  setting.coefitionpower=point;
 }
 
 function onError(error) {

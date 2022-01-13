@@ -40,6 +40,14 @@ $(document).ready(function(e) {
       console.log( this.value );
       page.settime(parseInt(this.value))
     });
+
+    $("#power").ForceNumericOnly();
+    $("#power").on('change', function() {
+      console.log( this.value );
+      page.setcoefitionpower(parseInt(this.value))
+    });
+    creatpointsvalues();
+
     });
 
 
@@ -111,7 +119,7 @@ function displayAsImage(file,i) {
 function addenemmy(i) 
 {
 
- let $x=$(".myblock:eq(2)").clone(false).appendTo("body")//.attr("id","image"+i)//.$("#image2").attr("id","image"+i)
+ let $x=$(".myblock:eq(3)").clone(false).appendTo("body")//.attr("id","image"+i)//.$("#image2").attr("id","image"+i)
  $x.find("#image2").attr("id","image"+i);
  $x.find("#image"+i).attr("src","http://macgroup.org/blog/wp-content/uploads/2011/10/iphone-camera-icon-150x150.jpg");
  $x.find("#upfile2").attr("id","upfile"+i);

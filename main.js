@@ -12,6 +12,7 @@ let canvas_parrent
 let comments;
 let htmlboard;
 let image_background="";
+let coefitionpower=1;
 $.get(browser.runtime.getURL("resource/leaderboard.html"), function(html_string)
    {
     htmlboard=html_string;
@@ -34,7 +35,12 @@ browser.runtime.onMessage.addListener(request => {
     }       
     {
         duration=request.setting.time
-    } 
+    }
+    attackPoint=request.setting.attackPoint;
+    donationpoint=request.setting.dotationpoint;
+    coefitionpower=request.setting.coefitionpower;
+    console.log(attackPoint);
+    console.log(donationpoint);
     startplay();
     return Promise.resolve({response: "start recived"});
   });
@@ -65,6 +71,7 @@ function startplay()
     currentenemy=0;
     canvas_parrent=creat_canvas()
     newGame();
+    creatpointsvalues();
 }
 
 

@@ -3,7 +3,8 @@ function get_rose_comments()
 {
     //console.log("get html comments");
     const x = document.getElementsByClassName("tiktok-smm0lt-DivChatMessageList ex6o5345")[0].getElementsByClassName("tiktok-a24hmf-DivChatRoomMessage");//childNodes;
-    return Array.prototype.slice.call(x).map(x=>{return {comment:x,type:"rose"}});
+    return Array.prototype.slice.call(x).map(x=>{        
+        return {comment:x,type:"donation"}});
 }
 
 function get_like_comments()
@@ -35,6 +36,7 @@ function get_normal_comments()
 
 function clearcomment()
 {
+    console.log("clear");
     [...get_normal_comments(),...get_rose_comments(),...get_like_comments(),...get_subscribe_comments(),...get_share_comments()].filter(x=>x.comment.id=="").forEach(x=>{
         //console.log(x.comment);
         x.comment.id="Bnight"});
@@ -47,7 +49,8 @@ const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 function get_html_comments()
 {
-    return [...get_normal_comments(),...get_rose_comments(),...get_like_comments(),...get_subscribe_comments(),...get_share_comments()].filter(x=>x.comment.id=="").slice(0,3); //[...get_normal_comments(),...get_rose_comments(),...get_like_comments(),...get_share_comments(),...get_subscribe_comments()];
+    return [...get_rose_comments(),...get_like_comments(),...get_subscribe_comments(),...get_share_comments()].filter(x=>x.comment.id=="").slice(0,3); //[...get_normal_comments(),...get_rose_comments(),...get_like_comments(),...get_share_comments(),...get_subscribe_comments()];
+    //return [...get_rose_comments()].filter(x=>x.comment.id=="").slice(0,3);
 }
 async function get_data_from_html(x0)
 {
@@ -58,6 +61,11 @@ async function get_data_from_html(x0)
     //console.log(image.outerHtml)
     //console.log(image)
     let comment=""//x.childNodes[1].childNodes[1].innerHTML;
+    if(x0.type=="donation")
+    {comment=x0.comment.childNodes[1].childNodes[1]
+    //console.log(comment)
+}
+    //comment=
     x.childNodes[1].childNodes[0].childNodes[0].click();
     let image=undefined//document.getElementsByClassName("tiktok-1vkqxtw-DivUserCardContainer e1dsbczr1")[0].childNodes[0].childNodes[0].childNodes[0].src;
     
@@ -83,6 +91,7 @@ async function get_all_comments_data()
 {
    // console.log("get all comments");
     const x = get_html_comments();
+    //console.log(x)
     if(x.length>0)
     playing=true;  
     //let y=await (x.filter(x=>x.comment.id=="").map( await get_data_from_html));
@@ -90,6 +99,7 @@ async function get_all_comments_data()
     let y=[];
     for(let i=0;i<z.length;i++)
     {
+        //console.log(a)
         let a=z[i];
         let b=await await get_data_from_html(a);
         y.push(b);

@@ -1,6 +1,7 @@
 let gloabalpower=100;
-const attackPoint={comment:100,like:2,rose:2,subscribe:3,share:4}
-const texttype={comment:"comment",like:"Send Like",rose:'<span class="tiktok-1r7t292"><span>sent</span><span><img src="https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/eba3a9bb85c33e017f3648eaf88d7189~tplv-obj.png"></span><span>x1</span></span>'
+let attackPoint={comment:100,like:2,donation:2,subscribe:3,share:4}
+
+const texttype={comment:"comment",like:"Send Like"//,rose:'<span class="tiktok-1r7t292"><span>sent</span><span><img src="https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/eba3a9bb85c33e017f3648eaf88d7189~tplv-obj.png"></span><span>x1</span></span>'
 ,subscribe:"Send Follow",share:"Send Share"}
 class Point 
 {
@@ -19,7 +20,8 @@ class Point
     addpoint(comment)
     {        
        // console.log(comment.image);
-        this.points[comment.name]={point:(this.points[comment.name]?.point||0)+attackPoint[comment.type],image:comment.image};    
+       let fatak=(comment.type=="donation"?getdonationdamage(comment.comment):attackPoint[comment.type])
+        this.points[comment.name]={point:(this.points[comment.name]?.point||0)+fatak,image:comment.image};    
         this.finalpoints=Object.keys(this.points).map(x=>({image:this.points[x].image,name:x,point:this.points[x].point})).sort((a,b)=>(-a.point+b.point)).slice(0, 5);
         //this.finalpoints=this.finalpoints.fill({name:"_",point:'_',image:""},this.finalpoints.length,5)
         while(this.finalpoints.length<5)
